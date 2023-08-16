@@ -1,4 +1,4 @@
 #!bin/bash
 
-bash  Component/$1.sh
+bash  Component/Roboshop/Frontend.sh
 
