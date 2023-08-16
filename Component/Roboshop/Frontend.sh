@@ -21,8 +21,19 @@ echo " I am Frontend User"
 # rm -rf frontend-main README.md
 # mv localhost.conf /etc/nginx/default.d/roboshop.conf
 
+USER_ID =$(id -u)
+
+if [ $USER_ID -ne 0 ] ; then 
+echo -e "\e[32m Script is expected to executed by the root user \e[0m \n \t ]"
+
+exit 1
+
+fi
 
 echo " COnfiguring Frontend"
 
 yum install nginx -y
+
+
+
 
