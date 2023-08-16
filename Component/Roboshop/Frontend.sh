@@ -1,6 +1,6 @@
 #!bin/bash
 
-USER_ID =$(id -u)
+USER_ID=$(id -u)
 
 if [ $USER_ID -ne 0 ] ; then 
    echo -e "\e[32m Script is expected to executed by the root user \e[0m \n \t Example: \n\t\t sudo bash Wrapper1.sh Frontend"
