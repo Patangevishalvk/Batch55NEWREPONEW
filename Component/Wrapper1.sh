@@ -1,3 +1,3 @@
 #!bin/bash
 
-bash frontend/$1.sh
+bash Roboshop/$1.sh
