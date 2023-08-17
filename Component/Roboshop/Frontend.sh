@@ -3,7 +3,7 @@
 set -e 
 
 USER_ID=$(id -u)
-Component=Frontend
+COMPONENT=Frontend
 LOGFILE="/tmp/${COMPONENT}.log"
 
 if [ $USER_ID -ne 0 ] ; then 
