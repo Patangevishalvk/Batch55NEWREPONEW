@@ -7,33 +7,28 @@ if [ $USER_ID -ne 0 ] ; then
    exit 1
 fi
 
-echo " Configuring Frontend"
+stat () {
+    
+    if [ $? -eq 0 ]; then
+   echo -e "\e[32m Success \e[0m"
+else 
+   echo -e "\e[31m Failure \e[0m"    
+
+exit 2
+
+fi
+}
+echo -e " Configuring Frontend"
 
 echo -n "Installing Frontend :"
 yum install nginx -y &>>  /tmp/frontend.log
 
-if [ $? -eq 0 ]; then
-   echo -e "\e[32m Success \e[0m"
-else 
-   echo -e "\e[31m Failure \e[0m"    
-fi
-
 echo -n "enablling and starting the nginx :"
 systemctl enable nginx   &>>  /tmp/frontend.log
 systemctl start nginx    &>>  /tmp/frontend.log
-if [ $? -eq 0 ]; then
-   echo -e "\e[32m Success \e[0m"
-else 
-   echo -e "\e[31m Failure \e[0m"    
-fi
 
 echo -n "Downloading the component :"
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
-if [ $? -eq 0 ]; then
-   echo -e "\e[32m Success \e[0m"
-else 
-   echo -e "\e[31m Failure \e[0m"    
-fi
 
 
 # cd /usr/share/nginx/html
