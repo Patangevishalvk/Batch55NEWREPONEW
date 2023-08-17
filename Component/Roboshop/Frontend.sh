@@ -46,7 +46,7 @@ cd /usr/share/nginx/html &>>  ${LOGFILE}
 rm -rf *
 stat $?
 
-echo -n "Extracting ${COMPONENT} :"
+echo -n "Extracting frontend :"
 unzip /tmp/frontend.zip     &>>  ${LOGFILE}
 mv ${COMPONENT}-main/* . 
 mv static/* . 
