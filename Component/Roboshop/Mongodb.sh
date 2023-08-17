@@ -16,35 +16,50 @@ stat () {
    echo -e "\e[32m Success \e[0m"
 else 
    echo -e "\e[31m Failure \e[0m"    
-   
+    exit 2
 fi
 }
-echo -e "Configuring ${COMPONENT}"
-echo -n "Installing NGINIX :"
-yum install nginx -y &>>  ${LOGFILE}
+
+echo -e "Configuring ${COMPONENT} repos :"
+curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
 stat $?
 
-echo -n "enablling and starting the nginx :"
-systemctl enable nginx   &>>  ${LOGFILE}
-systemctl start nginx    &>>  ${LOGFILE}
+echo -e "Installing ${COMPONENT} repos :"
+yum install -y mongodb-org  &>> ${LOGFILE}
 stat $?
 
-echo -n "Downloading the ${COMPONENT} :"
-curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" &>>  ${LOGFILE}
+echo -n "enablling and starting ${COMPONENT} :"
+systemctl enable mongod  &>> ${LOGFILE}
+systemctl start mongod   &>> ${LOGFILE}
 stat $?
 
-echo -n "Cleaning the ${COMPONENT} :"
-cd /usr/share/nginx/html &>>  ${LOGFILE}
-rm -rf *
-stat $?
 
-echo -n "Extracting ${COMPONENT} :"
-unzip /tmp/Frontend.zip     &>>  ${LOGFILE}
-stat $?
+#echo -e "Configuring ${COMPONENT}"
+#echo -n "Installing NGINIX :"
+#yum install nginx -y &>>  ${LOGFILE}
+#stat $?
 
-echo -n "Restarting ${COMPONENT} :"
-systemctl daemon-reload &>>  ${LOGFILE}  
-systemctl restart nginx &>>  ${LOGFILE}
-stat $?
+#echo -n "enablling and starting the nginx :"
+#systemctl enable nginx   &>>  ${LOGFILE}
+#systemctl start nginx    &>>  ${LOGFILE}
+#stat $?
+
+#echo -n "Downloading the ${COMPONENT} :"
+#curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" &>>  ${LOGFILE}
+#stat $?
+
+#echo -n "Cleaning the ${COMPONENT} :"
+#cd /usr/share/nginx/html &>>  ${LOGFILE}
+#rm -rf *
+#stat $?
+
+#echo -n "Extracting ${COMPONENT} :"
+#unzip /tmp/Frontend.zip     &>>  ${LOGFILE}
+#stat $?
+
+#echo -n "Restarting ${COMPONENT} :"
+#systemctl daemon-reload &>>  ${LOGFILE}  
+#systemctl restart nginx &>>  ${LOGFILE}
+#stat $?
 
 
