@@ -35,7 +35,7 @@ systemctl start nginx    &>>  ${LOGFILE}
 
 stat $?
 
-echo -n "Downloading the ${COMPONENT} component :"
+echo -n "Downloading the ${COMPONENT} :"
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" &>>  ${LOGFILE}
 
 stat $?
