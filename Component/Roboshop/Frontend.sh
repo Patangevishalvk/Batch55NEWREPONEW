@@ -21,32 +21,29 @@ else
 fi
 }
 echo -e "Configuring ${COMPONENT}"
-
 echo -n "Installing NGINIX :"
 yum install nginx -y &>>  ${LOGFILE}
-
 stat $?
 
 echo -n "enablling and starting the nginx :"
-
 systemctl enable nginx   &>>  ${LOGFILE}
 systemctl start nginx    &>>  ${LOGFILE}
-
 stat $?
 
 echo -n "Downloading the ${COMPONENT} :"
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" &>>  ${LOGFILE}
-
 stat $?
 
 echo -n "Cleaning the ${COMPONENT} :"
-
 cd /usr/share/nginx/html &>>  ${LOGFILE}
 rm -rf *
 stat $?
 
 echo -n "Extracting ${COMPONENT} :"
 unzip /tmp/Frontend.zip     &>>  ${LOGFILE}
+stat $?
+
+echo -n "Sorting the ${COMPONENT} files :"
 mv ${COMPONENT}-main/* . 
 mv static/* . 
 rm -rf ${COMPONENT}-main README.md 
