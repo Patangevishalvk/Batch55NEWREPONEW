@@ -32,18 +32,18 @@ systemctl start nginx    &>>  /tmp/frontend.log
 
 stat $?
 
-echo -n "Downloading the component :"
+echo -n "Downloading the Frontend component :"
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip" &>>  /tmp/frontend.log
 
 stat $?
 
-echo -n "Cleaning the component :"
+echo -n "Cleaning the Frontend :"
 
 cd /usr/share/nginx/html &>>  /tmp/frontend.log
 rm -rf *
 stat $?
 
-echo -n " Unzipping the component :"
+echo -n "Extracting Frontend :"
 unzip /tmp/frontend.zip &>>  /tmp/frontend.log
 stat $?
 
