@@ -27,7 +27,15 @@ else
    echo -e "\e[31m Failure \e[0m"    
 fi
 
-# curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+echo -n "Downloading the component :"
+curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+if [ $? -eq 0 ]; then
+   echo -e "\e[32m Success \e[0m"
+else 
+   echo -e "\e[31m Failure \e[0m"    
+fi
+
+
 # cd /usr/share/nginx/html
 # rm -rf *
 # unzip /tmp/frontend.zip
