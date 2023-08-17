@@ -23,13 +23,19 @@ echo -e " Configuring Frontend"
 echo -n "Installing Frontend :"
 yum install nginx -y &>>  /tmp/frontend.log
 
+stat $?
+
 echo -n "enablling and starting the nginx :"
+
 systemctl enable nginx   &>>  /tmp/frontend.log
 systemctl start nginx    &>>  /tmp/frontend.log
+
+stat $?
 
 echo -n "Downloading the component :"
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 
+stat $?
 
 # cd /usr/share/nginx/html
 # rm -rf *
