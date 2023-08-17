@@ -21,6 +21,11 @@ fi
 echo "enablling and starting the Frontend :"
 systemctl enable nginx
 systemctl start nginx
+if [ $? -eq 0 ]; then
+   echo -e "\e[32m Success \e[0m"
+else 
+   echo -e "\e[32m Failure \e[0m"    
+fi
 
 # curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 # cd /usr/share/nginx/html
