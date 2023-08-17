@@ -2,7 +2,7 @@
 
 set -e 
 Component=$1
-
+LOGFILE=/tmp/${COMPONENT}.log
 USER_ID=$(id -u)
 
 if [ $USER_ID -ne 0 ] ; then 
@@ -24,44 +24,44 @@ fi
 echo -e "Configuring ${COMPONENT}"
 
 echo -n "Installing NGINIX :"
-yum install nginx -y &>>  /tmp/${COMPONENT}.log
+yum install nginx -y &>>  ${LOGFILE}
 
 stat $?
 
 echo -n "enablling and starting the nginx :"
 
-systemctl enable nginx   &>>  /tmp/${COMPONENT}.log
-systemctl start nginx    &>>  /tmp/${COMPONENT}.log
+systemctl enable nginx   &>>  ${LOGFILE}
+systemctl start nginx    &>>  ${LOGFILE}
 
 stat $?
 
 echo -n "Downloading the ${COMPONENT} component :"
-curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" &>>  /tmp/${COMPONENT}.log
+curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" &>>  ${LOGFILE}
 
 stat $?
 
 echo -n "Cleaning the ${COMPONENT} :"
 
-cd /usr/share/nginx/html &>>  /tmp/${COMPONENT}.log
+cd /usr/share/nginx/html &>>  ${LOGFILE}
 rm -rf *
 stat $?
 
 echo -n "Extracting ${COMPONENT} :"
-unzip /tmp/${COMPONENT}.zip &>>  /tmp/${COMPONENT}.log
+unzip /tmp/${COMPONENT}.zip &>>  ${LOGFILE}
 stat $?
 
 
 echo -n "Sorting ${COMPONENT} :"
 
-mv ${COMPONENT}-main/* . &>>  /tmp/${COMPONENT}.log
-mv static/* . &>>  /tmp/${COMPONENT}.log
-rm -rf static README.md &>>  /tmp/${COMPONENT}.log
+mv ${COMPONENT}-main/* . &>>  ${LOGFILE}
+mv static/* . &>>  ${LOGFILE}
+rm -rf static README.md &>> ${LOGFILE}
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
 echo -n "Re-starting ${COMPONENT} :"
-systemctl daemon-reload &>>  /tmp/${COMPONENT}.log  
-systemctl restart nginx &>>  /tmp/${COMPONENT}.log
+systemctl daemon-reload &>>  ${LOGFILE}  
+systemctl restart nginx &>>  ${LOGFILE}
 stat $?
 
 
