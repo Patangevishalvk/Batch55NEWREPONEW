@@ -47,7 +47,7 @@ rm -rf *
 stat $?
 
 echo -n "Extracting ${COMPONENT} :"
-unzip /tmp/${COMPONENT}.zip &>>  ${LOGFILE}
+unzip /tmp/Frontend.zip &>>  ${LOGFILE}
 stat $?
 
 
