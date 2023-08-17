@@ -1,6 +1,7 @@
 #!bin/bash
 
 set -e 
+Component=$1
 
 USER_ID=$(id -u)
 
@@ -20,47 +21,47 @@ exit 2
 
 fi
 }
-echo -e "Configuring Frontend"
+echo -e "Configuring ${COMPONENT}"
 
-echo -n "Installing Frontend :"
-yum install nginx -y &>>  /tmp/frontend.log
+echo -n "Installing NGINIX :"
+yum install nginx -y &>>  /tmp/${COMPONENT}.log
 
 stat $?
 
 echo -n "enablling and starting the nginx :"
 
-systemctl enable nginx   &>>  /tmp/frontend.log
-systemctl start nginx    &>>  /tmp/frontend.log
+systemctl enable nginx   &>>  /tmp/${COMPONENT}.log
+systemctl start nginx    &>>  /tmp/${COMPONENT}.log
 
 stat $?
 
-echo -n "Downloading the Frontend component :"
-curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip" &>>  /tmp/frontend.log
+echo -n "Downloading the ${COMPONENT} component :"
+curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" &>>  /tmp/${COMPONENT}.log
 
 stat $?
 
-echo -n "Cleaning the Frontend :"
+echo -n "Cleaning the ${COMPONENT} :"
 
-cd /usr/share/nginx/html &>>  /tmp/frontend.log
+cd /usr/share/nginx/html &>>  /tmp/${COMPONENT}.log
 rm -rf *
 stat $?
 
-echo -n "Extracting Frontend :"
-unzip /tmp/frontend.zip &>>  /tmp/frontend.log
+echo -n "Extracting ${COMPONENT} :"
+unzip /tmp/${COMPONENT}.zip &>>  /tmp/${COMPONENT}.log
 stat $?
 
 
-echo -n "Sorting Frontend :"
+echo -n "Sorting ${COMPONENT} :"
 
-mv frontend-main/* . &>>  /tmp/frontend.log
-mv static/* . &>>  /tmp/frontend.log
-rm -rf static README.md &>>  /tmp/frontend.log
+mv ${COMPONENT}-main/* . &>>  /tmp/${COMPONENT}.log
+mv static/* . &>>  /tmp/${COMPONENT}.log
+rm -rf static README.md &>>  /tmp/${COMPONENT}.log
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
-echo -n "Re-starting Frontend :"
-systemctl daemon-reload &>>  /tmp/frontend.log  
-systemctl restart nginx &>>  /tmp/frontend.log
+echo -n "Re-starting ${COMPONENT} :"
+systemctl daemon-reload &>>  /tmp/${COMPONENT}.log  
+systemctl restart nginx &>>  /tmp/${COMPONENT}.log
 stat $?
 
 
