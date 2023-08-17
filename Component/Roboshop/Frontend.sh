@@ -18,7 +18,7 @@ else
    echo -e "\e[31m Failure \e[0m"    
 fi
 
-echo "enablling and starting the Frontend :"
+echo -n "enablling and starting the Frontend :"
 systemctl enable nginx
 systemctl start nginx
 if [ $? -eq 0 ]; then
