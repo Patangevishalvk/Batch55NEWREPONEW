@@ -43,13 +43,6 @@ echo -n "Extracting ${COMPONENT} :"
 unzip /tmp/Frontend.zip     &>>  ${LOGFILE}
 stat $?
 
-echo -n "Sorting the ${COMPONENT} files :"
-mv ${COMPONENT}-main/* . 
-mv static/* . 
-rm -rf ${COMPONENT} README.md 
-mv localhost.conf /etc/nginx/default.d/roboshop.conf
-stat $?
-
 echo -n "Restarting ${COMPONENT} :"
 systemctl daemon-reload &>>  ${LOGFILE}  
 systemctl restart nginx &>>  ${LOGFILE}
