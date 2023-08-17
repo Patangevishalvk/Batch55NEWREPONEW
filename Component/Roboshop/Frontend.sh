@@ -33,13 +33,20 @@ systemctl start nginx    &>>  /tmp/frontend.log
 stat $?
 
 echo -n "Downloading the component :"
-curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip" &>>  /tmp/frontend.log
 
 stat $?
 
-# cd /usr/share/nginx/html
-# rm -rf *
-# unzip /tmp/frontend.zip
+echo -n "Cleaning the component :"
+
+cd /usr/share/nginx/html &>>  /tmp/frontend.log
+rm -rf *
+stat $?
+
+echo -n " Unzipping the component :"
+unzip /tmp/frontend.zip &>>  /tmp/frontend.log
+stat $?
+
 # mv frontend-main/* .
 # mv static/* .
 # rm -rf frontend-main README.md
