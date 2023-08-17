@@ -1,7 +1,7 @@
 #!bin/bash
 
 set -e 
-Component=frontend
+Component=Frontend
 LOGFILE="/tmp/${COMPONENT}.log"
 USER_ID=$(id -u)
 
