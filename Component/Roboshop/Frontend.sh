@@ -46,7 +46,7 @@ stat $?
 echo -n "Sorting the ${COMPONENT} files :"
 mv ${COMPONENT}-main/* . 
 mv static/* . 
-rm -rf ${COMPONENT}-main README.md 
+rm -rf ${COMPONENT} README.md 
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
