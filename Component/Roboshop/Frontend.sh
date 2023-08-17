@@ -2,7 +2,7 @@
 
 set -e 
 Component=frontend
-LOGFILE=/tmp/${COMPONENT}.log
+LOGFILE="/tmp/${COMPONENT}.log"
 USER_ID=$(id -u)
 
 if [ $USER_ID -ne 0 ] ; then 
@@ -46,9 +46,9 @@ cd /usr/share/nginx/html &>>  ${LOGFILE}
 rm -rf *
 stat $?
 
-echo -n "Extracting frontend :"
+echo -n "Extracting ${COMPONENT} :"
 unzip /tmp/frontend.zip     &>>  ${LOGFILE}
-mv $frontend-main/* . 
+mv ${COMPONENT}-main/* . 
 mv static/* . 
 rm -rf  ${COMPONENT}-main README.md 
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
