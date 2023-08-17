@@ -20,11 +20,11 @@ else
 fi
 }
 
-echo -e "Configuring ${COMPONENT} repos :"
+echo -n "Configuring ${COMPONENT} repos :"
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
 stat $?
 
-echo -e "Installing ${COMPONENT} repos :"
+echo -n "Installing ${COMPONENT} repos :"
 yum install -y mongodb-org  &>> ${LOGFILE}
 stat $?
 
