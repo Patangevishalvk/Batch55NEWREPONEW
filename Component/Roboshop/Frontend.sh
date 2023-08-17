@@ -18,7 +18,7 @@ exit 2
 
 fi
 }
-echo -e " Configuring Frontend"
+echo -e "Configuring Frontend"
 
 echo -n "Installing Frontend :"
 yum install nginx -y &>>  /tmp/frontend.log
