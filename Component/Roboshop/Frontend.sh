@@ -10,7 +10,13 @@ fi
 echo " Configuring Frontend"
 
 echo "Installing Frontend :"
-yum install nginx -y
+yum install nginx -y &>>  /tmp/frontend.log
+
+if [ $? -eq 0 ]; then
+   echo -e "\e[32m Success \e[0m"
+else 
+   echo -e "\e[32m Failure \e[0m"    
+fi
 
 echo "enablling and starting the Frontend :"
 systemctl enable nginx
