@@ -9,7 +9,7 @@ fi
 
 echo " Configuring Frontend"
 
-echo "Installing Frontend :"
+echo -n "Installing Frontend :"
 yum install nginx -y &>>  /tmp/frontend.log
 
 if [ $? -eq 0 ]; then
