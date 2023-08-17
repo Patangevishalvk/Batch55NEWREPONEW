@@ -48,14 +48,9 @@ stat $?
 
 echo -n "Extracting ${COMPONENT} :"
 unzip /tmp/Frontend.zip &>>  ${LOGFILE}
-stat $?
-
-
-echo -n "Sorting ${COMPONENT} :"
-
-mv ${COMPONENT}-main/* . &>>  ${LOGFILE}
-mv static/* . &>>  ${LOGFILE}
-rm -rf static README.md &>> ${LOGFILE}
+mv ${COMPONENT}-main/* . 
+mv static/* . 
+rm -rf static README.md 
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
