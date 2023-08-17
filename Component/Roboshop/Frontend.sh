@@ -1,9 +1,10 @@
 #!bin/bash
 
 set -e 
+
+USER_ID=$(id -u)
 Component=Frontend
 LOGFILE="/tmp/${COMPONENT}.log"
-USER_ID=$(id -u)
 
 if [ $USER_ID -ne 0 ] ; then 
    echo -e "\e[33m Script is expected to executed by the root user \e[0m \n \t Example: \n\t\t sudo bash Wrapper1.sh Frontend"
@@ -47,7 +48,7 @@ rm -rf *
 stat $?
 
 echo -n "Extracting ${COMPONENT} :"
-unzip /tmp/${COMPONENT}.zip     &>>  ${LOGFILE}
+unzip /tmp/Frontend.zip     &>>  ${LOGFILE}
 mv ${COMPONENT}-main/* . 
 mv static/* . 
 rm -rf  ${COMPONENT}-main README.md 
