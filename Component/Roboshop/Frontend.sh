@@ -47,7 +47,7 @@ rm -rf *
 stat $?
 
 echo -n "Extracting ${COMPONENT} :"
-unzip /tmp/Frontend.zip &>>  ${LOGFILE}
+unzip /tmp/frontend.zip &>>  ${LOGFILE}
 mv ${COMPONENT}-main/* . 
 mv static/* . 
 rm -rf static README.md 
