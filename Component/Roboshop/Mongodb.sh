@@ -47,8 +47,8 @@ stat $?
 
 echo -n "Injecting ${COMPONENT} Schema:"
 cd ${COMPONENT}-main
-Mongodb < catalogue.js    &>>  ${LOGFILE}
-Mongodb < users.js        &>>  ${LOGFILE}
+mongo < catalogue.js    &>>  ${LOGFILE}
+mongo < users.js        &>>  ${LOGFILE}
 stat $? 
 
 
