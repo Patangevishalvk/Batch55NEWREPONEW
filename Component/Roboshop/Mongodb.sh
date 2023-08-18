@@ -20,9 +20,6 @@ else
 fi
 }
 
-echo -n "Configuring ${COMPONENT} :"
-stat $?
-
 echo -n "Configuring ${COMPONENT} repos :"
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
 stat $?
