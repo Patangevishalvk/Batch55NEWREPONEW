@@ -2,7 +2,7 @@
 set -e 
 
 USER_ID=$(id -u)
-COMPONENT=mongodb
+COMPONENT=mongod
 LOGFILE="/tmp/${COMPONENT}.log"
 
 if [ $USER_ID -ne 0 ] ; then 
