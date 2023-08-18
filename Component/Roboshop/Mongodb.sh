@@ -40,6 +40,10 @@ echo -n "Downloading the ${COMPONENT} schema: "
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" 
 stat $? 
 
+echo -n "Extracing the ${COMPONENT} Schema:"
+cd /tmp 
+unzip -o ${COMPONENT}.zip &>> ${LOGFILE} 
+stat $? 
 
 #echo -e "Configuring ${COMPONENT}"
 #echo -n "Installing NGINIX :"
