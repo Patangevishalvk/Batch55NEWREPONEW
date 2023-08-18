@@ -16,7 +16,7 @@ stat () {
    echo -e "\e[32m Success \e[0m"
 else 
    echo -e "\e[31m Failure \e[0m"    
-    
+   exit 2 
     fi
 }
 
@@ -33,8 +33,8 @@ sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 stat $?
 
 echo -n "Starting the ${COMPONENT} :"
-systemctl enable Mongodb    &>> ${LOGFILE}
-systemctl Start Mongodb     &>> ${LOGFILE}
+systemctl enable mongod    &>> ${LOGFILE}
+systemctl Start mongod     &>> ${LOGFILE}
 stat $?
 
 
