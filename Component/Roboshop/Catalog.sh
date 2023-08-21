@@ -32,7 +32,12 @@ echo -n "Creating Application User account :"
 useradd roboshop  
 stat $?
 
-
+id $(APPUSER)
+  if [ $? -eq 0 ]; then
+   echo -e "\e[32m Creating Application User Account \e[0m"
+else 
+   echo -e "\e[31m Failure \e[0m"    
+   exit 3
 
 # echo -n "Downloading the ${COMPONENT} schema: "
 # curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" 
