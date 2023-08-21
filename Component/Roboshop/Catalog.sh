@@ -4,7 +4,7 @@ set -e
 USER_ID=$(id -u)
 COMPONENT=Catalog
 LOGFILE="/tmp/${COMPONENT}.log"
-APPUSER=Component
+APPUSER="roboshop"
 if [ $USER_ID -ne 0 ] ; then 
    echo -e "\e[33m Script is expected to executed by the root user \e[0m \n \t Example: \n\t\t sudo bash Wrapper1.sh Catalog"
    exit 1
@@ -40,7 +40,7 @@ curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalog
 stat $?
 
 
-echo -n "Copying the ${COMPONENT} to ${APPPUSER}  home directory :"
+echo -n "Copying the ${COMPONENT} to ${APPPUSER} home directory :"
 cd /home/${APPPUSER}/ &>> ${LOGFILE}
 rm -rf $(COMPONENT)
 unzip -o /tmp/$(COMPONENT).zip &>> ${LOGFILE}
