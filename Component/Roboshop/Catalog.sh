@@ -10,8 +10,8 @@ if [ $USER_ID -ne 0 ] ; then
    echo -e "\e[33m Script is expected to executed by the root user \e[0m \n \t Example: \n\t\t sudo bash Wrapper1.sh Catalog"
    exit 1
 fi
-stat $?
-
+stat () {
+    
 if [ $? -eq 0 ]; then
    echo -e "\e[32m Success \e[0m"
 else 
@@ -24,7 +24,7 @@ echo -n "Configuring ${COMPONENT} repos :"
 curl --silent --location https://rpm.nodesource.com/setup_16.x | bash - &>> ${LOGFILE}
 stat $?
 
-echo -n "Installing Nodejs repos :"
+echo -n "Installing Nodejs :"
 yum install nodejs -y &>> ${LOGFILE}
 stat $?
 
@@ -32,8 +32,8 @@ id ${APPUSER} &>> ${LOGFILE}
 if  [ $? -ne 0 ] ; then 
 echo -n "Creating Application User Account :"
 useradd roboshop
-fi 
 stat $?
+fi 
 
 echo -n "Downloading the ${COMPONENT} :"
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
