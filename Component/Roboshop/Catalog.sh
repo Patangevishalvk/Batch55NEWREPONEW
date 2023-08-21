@@ -35,6 +35,20 @@ if [ $? -ne 0 ]; then
    stat $?
 fi
 
+echo -n "Downloading the ${COMPONENT} :"
+curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
+stat $?
+
+
+echo -n "Copying the ${COMPONENT} to ${APPPUSER}  home directory :"
+cd /home/${APPPUSER}/ &>> ${LOGFILE}
+rm -rf $(COMPONENT)
+unzip -o /tmp/$(COMPONENT).zip &>> ${LOGFILE}
+stat $?
+
+
+
+
 
 # echo -n "Downloading the ${COMPONENT} schema: "
 # curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" 
