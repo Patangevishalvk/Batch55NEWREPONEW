@@ -18,7 +18,6 @@ else
    echo -e "\e[31m Failure \e[0m"    
    exit 2 
 fi
-
 }
 
 echo -n "Configuring ${COMPONENT} repos :"
@@ -42,7 +41,7 @@ stat $?
 
 echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
 cd /home/${APPUSER}/
-rm -rf ${COMPONENT}             
+rm -rf ${COMPONENT}             &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
 stat $?
 
