@@ -1,4 +1,26 @@
-t --location https://rpm.nodesource.com/setup_16.x | bash - &>> ${LOGFILE}
+USER_ID=$(id -u)
+COMPONENT=catalogue
+LOGFILE="/tmp/${COMPONENT}.log"
+APPUSER="roboshop"
+
+if [ $USER_ID -ne 0 ] ; then 
+   echo -e "\e[33m Script is expected to executed by the root user \e[0m \n \t Example: \n\t\t sudo bash Wrapper1.sh Frontend"
+   exit 1
+fi
+
+stat () {
+    
+    if [ $? -eq 0 ]; then
+   echo -e "\e[32m Success \e[0m"
+else 
+   echo -e "\e[31m Failure \e[0m"    
+   exit 2 
+    fi
+}
+
+echo -n "Configuring ${COMPONENT} repo  :"
+
+curl --silent --location https://rpm.nodesource.com/setup_16.x | bash - &>> ${LOGFILE}
 stat $?
 
 echo -n "Installing Nodejs :"
