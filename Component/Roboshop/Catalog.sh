@@ -35,32 +35,8 @@ stat $?
 fi 
 
 echo -n "Downloading the ${COMPONENT} :"
-curl -s -L -o /tmp/${COMPON#!bin/bash
+curl -s -L -o /tmp/${COMPONENT}!bin/bash
 set -e 
-
-USER_ID=$(id -u)
-COMPONENT=catalogue
-LOGFILE="/tmp/${COMPONENT}.log"
-APPUSER="roboshop"
-
-if [ $USER_ID -ne 0 ] ; then 
-   echo -e "\e[33m Script is expected to executed by the root user \e[0m \n \t Example: \n\t\t sudo bash Wrapper1.sh Catalog"
-   exit 1
-fi
-
-stat () {
-     if [ $? -eq 0 ]; then
-        echo -e "\e[32m Success \e[0m"
-     else 
-        echo -e "\e[31m Failure \e[0m"    
-        exit 2 
-    fi
-
-}
-
-echo -n "Configuring ${COMPONENT} repos :"
-curl --silenENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
-stat $?
 
 echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory"
 cd /home/${APPUSER}/
