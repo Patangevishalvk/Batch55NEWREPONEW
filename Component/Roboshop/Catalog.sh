@@ -56,5 +56,19 @@ npm install &>> ${LOGFILE}
 stat $?
 
 
+echo -n "Configuring the ${COMPONENT} system file :"
+sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/' home/${APPUSER}/${COMPONENT}/systemd.service &>> ${LOGFILE}
+mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+stat $?
+
+echo -n "Strating the ${COMPONENT} :"
+systemctl daemon-reload
+systemctl start catalogue
+systemctl enable catalogue
+systemctl status catalogue -l
+stat $?
+
+
+
 
 
