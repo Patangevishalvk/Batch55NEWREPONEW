@@ -2,7 +2,7 @@
 set -e 
 
 USER_ID=$(id -u)
-COMPONENT=Catalog
+COMPONENT=catalogue
 LOGFILE="/tmp/${COMPONENT}.log"
 APPUSER="roboshop"
 
