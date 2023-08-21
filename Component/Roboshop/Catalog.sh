@@ -61,12 +61,14 @@ sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/' home/${APPUSER}/${COMPONENT
 mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
 
-echo -n "Strating the ${COMPONENT} :"
-systemctl daemon-reload
-systemctl start catalogue
-systemctl enable catalogue
-systemctl status catalogue -l
+echo -n "Strating the ${COMPONENT} service:"
+systemctl daemon-reload &>> ${LOGFILE}
+systemctl enable ${COMPONENT} &>> ${LOGFILE}
+systemctl restart ${COMPONENT} &>> ${LOGFILE}
+systemctl status ${COMPONENT} -l
 stat $?
+
+echo -e "\e[35m ${COMPONENT} Installation Is Completed \e[0m \n"
 
 
 
