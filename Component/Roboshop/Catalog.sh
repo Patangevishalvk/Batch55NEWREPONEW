@@ -46,15 +46,15 @@ rm -rf ${COMPONENT}             &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
 stat $?
 
-echo -n "Changing the Ownership :"
-mv ${COMPONENT} -main ${COMPONENT}
-chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
-stat $?
+#echo -n "Changing the Ownership :"
+#mv ${COMPONENT} -main ${COMPONENT}
+#chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
+#stat $?
 
-echo -n "Generating the ${COMPONENT} artifacts :"
-cd /home/${APPUSER}/${COMPONENT} &>> ${LOGFILE}
-npm install &>> ${LOGFILE}
-stat $?
+#echo -n "Generating the ${COMPONENT} artifacts :"
+#cd /home/${APPUSER}/${COMPONENT} &>> ${LOGFILE}
+#npm install &>> ${LOGFILE}
+#stat $?
 
 
 # echo -n "Downloading the ${COMPONENT} schema: "
