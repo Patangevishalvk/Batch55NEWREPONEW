@@ -57,7 +57,7 @@ stat $?
 
 
 echo -n "Configuring the ${COMPONENT} system file :"
-sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/' home/${APPUSER}/${COMPONENT}/systemd.service 
+sed -ie 's/MONGO_DNSNAME/44.204.56.204/' home/${APPUSER}/${COMPONENT}/systemd.service 
 mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
 
