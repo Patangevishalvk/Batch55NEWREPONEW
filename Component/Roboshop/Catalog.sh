@@ -52,7 +52,7 @@ mv ${COMPONENT} -main ${COMPONENT}
 chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
 stat $?
 
-
+ 
 
 
 # echo -n "Downloading the ${COMPONENT} schema: "
