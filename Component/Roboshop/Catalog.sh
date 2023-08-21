@@ -28,8 +28,8 @@ echo -n "Installing Nodejs repos :"
 yum install nodejs -y &>> ${LOGFILE}
 stat $?
 
-id $(APPUSER)
-if [ $? -ne 0 ]; then &>> ${LOGFILE}
+id $(APPUSER) &>> ${LOGFILE}
+if [ $? -ne 0 ]; then 
    echo -n "\e[32m Creating Application User Account \e[0m"
    useradd roboshop  
    stat $?
