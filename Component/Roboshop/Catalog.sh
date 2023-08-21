@@ -41,7 +41,7 @@ curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalog
 stat $?
 
 
-echo -n "Copying the ${COMPONENT} to ${APPPUSER} home directory :"
+echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
 cd /home/${APPUSER}/
 rm -rf ${COMPONENT}           &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip &>> ${LOGFILE}
