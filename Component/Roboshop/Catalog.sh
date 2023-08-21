@@ -21,7 +21,7 @@ else
 }
 
 echo -n "Configuring ${COMPONENT} repos :"
-curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
+curl --silent --location https://rpm.nodesource.com/setup_16.x | bash - &>> ${LOGFILE}
 stat $?
 
 echo -n "Installing Nodejs repos :"
@@ -29,7 +29,7 @@ yum install nodejs -y &>> ${LOGFILE}
 stat $?
 
 echo -n "Creating application User account :"
-useradd roboshop
+useradd roboshop  &>> ${LOGFILE}
 stat $?
 
 
