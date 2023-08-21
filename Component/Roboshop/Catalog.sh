@@ -30,7 +30,7 @@ stat $?
 
 id $(APPUSER)
 if [ $? -ne 0 ]; then
-   echo -e "\e[32m Creating Application User Account \e[0m"
+   echo -n "\e[32m Creating Application User Account \e[0m"
    useradd roboshop  
    stat $?
 fi
