@@ -43,8 +43,8 @@ stat $?
 
 echo -n "Copying the ${COMPONENT} to ${APPPUSER} home directory :"
 cd /home/${APPUSER}/
-rm -rf $(COMPONENT)            &>> ${LOGFILE}
-unzip -o /tmp/$(COMPONENT).zip &>> ${LOGFILE}
+rm -rf ${COMPONENT}           &>> ${LOGFILE}
+unzip -o /tmp/${COMPONENT}.zip &>> ${LOGFILE}
 stat $?
 
 
