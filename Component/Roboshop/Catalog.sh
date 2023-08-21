@@ -31,7 +31,7 @@ stat $?
 id $(APPUSER)
 if [ $? -ne 0 ]; then
    echo -n "\e[32m Creating Application User Account \e[0m"
-   useradd roboshop  
+   useradd roboshop  &>> ${LOGFILE}
    stat $?
 fi
 
