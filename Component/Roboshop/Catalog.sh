@@ -28,7 +28,7 @@ echo -n "Installing Nodejs repos :"
 yum install nodejs -y &>> ${LOGFILE}
 stat $?
 
-echo -n "Creating application User account :"
+echo -n "Creating Application User account :"
 useradd roboshop  &>> ${LOGFILE}
 stat $?
 
