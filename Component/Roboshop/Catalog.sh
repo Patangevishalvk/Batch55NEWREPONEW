@@ -33,8 +33,7 @@ useradd roboshop
 stat $?
 
 id $(APPUSER)
-
-if [ $? -eq 0 ]; then
+if [ $? -ne 0 ]; then
    echo -e "\e[32m Creating Application User Account \e[0m"
    stat $?
 fi
