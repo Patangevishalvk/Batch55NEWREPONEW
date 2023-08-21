@@ -12,6 +12,13 @@ if [ $USER_ID -ne 0 ] ; then
 fi
 stat () {
     
+if [ $? -eq 0 ]; then
+   echo -e "\e[32m Success \e[0m"
+else 
+   echo -e "\e[31m Failure \e[0m"    
+   exit 2 fi
+}
+
 echo -n "Configuring ${COMPONENT} repos :"
 curl --silent --location https://rpm.nodesource.com/setup_16.x | bash - &>> ${LOGFILE}
 stat $?
