@@ -1,4 +1,19 @@
-#!bin/bash
+t --location https://rpm.nodesource.com/setup_16.x | bash - &>> ${LOGFILE}
+stat $?
+
+echo -n "Installing Nodejs :"
+yum install nodejs -y &>> ${LOGFILE}
+stat $?
+
+id ${APPUSER} &>> ${LOGFILE}
+if  [ $? -ne 0 ] ; then 
+echo -n "Creating Application User Account :"
+useradd roboshop
+stat $?
+fi 
+
+echo -n "Downloading the ${COMPONENT} :"
+curl -s -L -o /tmp/${COMPON#!bin/bash
 set -e 
 
 USER_ID=$(id -u)
@@ -22,22 +37,7 @@ stat () {
 }
 
 echo -n "Configuring ${COMPONENT} repos :"
-curl --silent --location https://rpm.nodesource.com/setup_16.x | bash - &>> ${LOGFILE}
-stat $?
-
-echo -n "Installing Nodejs :"
-yum install nodejs -y &>> ${LOGFILE}
-stat $?
-
-id ${APPUSER} &>> ${LOGFILE}
-if  [ $? -ne 0 ] ; then 
-echo -n "Creating Application User Account :"
-useradd roboshop
-stat $?
-fi 
-
-echo -n "Downloading the ${COMPONENT} :"
-curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
+curl --silenENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
 stat $?
 
 echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory"
@@ -47,7 +47,7 @@ unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
 stat $?
 
 echo -n "Changing the Ownership :"
-mv ${COMPONENT} -main ${COMPONENT}
+mv ${COMPONENT}-main ${COMPONENT}
 chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
 stat $?
 
